@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  web:
+    image: puuuudding/puuuudding.com:latest
+    container_name: puuuudding_web
+    restart: always
+    ports:
+      - "127.0.0.1:9999:9999/tcp"
