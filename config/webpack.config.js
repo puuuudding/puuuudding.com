@@ -23,6 +23,8 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const sass = require('sass');
+const fibers = require('fibers');
 
 const postcssNormalize = require('postcss-normalize');
 
@@ -46,8 +48,8 @@ const useTypeScript = fs.existsSync(paths.appTsConfig);
 // style files regexes
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
-const lessRegex = /\.less$/;
-const lessModuleRegex = /\.module\.less$/;
+const sassRegex = /\.(scss|sass)$/;
+const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -272,7 +274,6 @@ module.exports = function(webpackEnv) {
       },
     },
     resolve: {
-      // mainFiles: ['index'], // TODO: check if necessary
       // This allows you to set a fallback for where webpack should look for modules.
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
@@ -453,20 +454,23 @@ module.exports = function(webpackEnv) {
                 },
               }),
             },
-            // Opt-in support for LESS (using .less extensions).
-            // By default we support LESS Modules with the
-            // extensions .module.less
+            // Opt-in support for SASS (using .scss or .sass extensions).
+            // By default we support SASS Modules with the
+            // extensions .module.scss or .module.sass
             {
-              test: lessRegex,
-              exclude: lessModuleRegex,
+              test: sassRegex,
+              exclude: sassModuleRegex,
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
-                'less-loader',
+                'sass-loader',
                 {
-                  lessOptions: { javascriptEnabled: true },
+                  implementation: sass,
+                  sassOptions: {
+                    fiber: fibers,
+                  },
                 },
               ),
               // Don't consider CSS imports dead code even if the
@@ -475,10 +479,10 @@ module.exports = function(webpackEnv) {
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true,
             },
-            // Adds support for CSS Modules, but using LESS
-            // using the extension .module.less
+            // Adds support for CSS Modules, but using SASS
+            // using the extension .module.scss or .module.sass
             {
-              test: lessModuleRegex,
+              test: sassModuleRegex,
               use: getStyleLoaders(
                 {
                   importLoaders: 3,
@@ -487,9 +491,12 @@ module.exports = function(webpackEnv) {
                     getLocalIdent: getCSSModuleLocalIdent,
                   },
                 },
-                'less-loader',
+                'sass-loader',
                 {
-                  lessOptions: { javascriptEnabled: true },
+                  implementation: sass,
+                  sassOptions: {
+                    fiber: fibers,
+                  },
                 },
               ),
             },
