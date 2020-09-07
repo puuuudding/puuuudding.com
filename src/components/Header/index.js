@@ -8,6 +8,8 @@ function AppHeader() {
       <h1 className={styles.title}>Puuuudding</h1>
       <nav className={styles.navContainer}>
         <Link to="/">Home</Link>
+        <Link to="/blogs">Blogs</Link>
+        <Link to="/photos">Photos</Link>
       </nav>
     </header>
   );
