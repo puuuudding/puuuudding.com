@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './styles/App.sass';
+import './App.sass';
 
 import AppHeader from './components/Header';
 import AppFooter from './components/Footer';

@@ -122,7 +122,7 @@ checkBrowsers(paths.appPath, isInteractive)
       if (err) {
         return console.log(err);
       }
-      if (isInteractive) {
+      if (isInteractive && false) {
         clearConsole();
       }
 
