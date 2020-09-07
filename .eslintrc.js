@@ -16,6 +16,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
+  ignorePatterns: ['/scripts/*', '/config/*', '.eslintrc.js'],
   globals: {
   },
   rules: {
