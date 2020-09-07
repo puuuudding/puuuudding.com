@@ -1,10 +1,14 @@
 FROM node:erbium-alpine
 
+EXPOSE 9999
+WORKDIR /home/node/puuuudding.com
+
 RUN yarn global add serve
 
-WORKDIR /puuuudding.com
-COPY . ./
-RUN yarn install --frozen-lockfile && yarn build
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-EXPOSE 9999
+COPY . ./
+RUN yarn build
+
 CMD serve -s build -p 9999
