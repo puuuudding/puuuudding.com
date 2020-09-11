@@ -10,9 +10,9 @@ const PageTest = lazy(() => import('./pages/Test'));
 
 function App() {
   return (
-    <div>
-      <AppHeader />
-      <div className="app">
+    <div className="root">
+      <div className="page">
+        <AppHeader />
         <Suspense fallback={<div>loading</div>}>
           <Switch>
             <Route path="/" exact><PageHome /></Route>
