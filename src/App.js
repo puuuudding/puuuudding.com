@@ -6,6 +6,7 @@ import AppHeader from './components/Header';
 import AppFooter from './components/Footer';
 
 const PageHome = lazy(() => import('./pages/Home'));
+const PageTest = lazy(() => import('./pages/Test'));
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Suspense fallback={<div>loading</div>}>
           <Switch>
             <Route path="/" exact><PageHome /></Route>
+            <Route path="/hidden-test"><PageTest /></Route>
           </Switch>
         </Suspense>
       </div>
