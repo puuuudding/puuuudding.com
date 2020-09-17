@@ -1,7 +1,7 @@
 import React from 'react';
-import IconCopyright from 'remixicon/icons/Business/copyright-line.svg';
-import IconHearts from 'remixicon/icons/Health/hearts-fill.svg';
-import IconGithub from 'remixicon/icons/Logos/github-fill.svg';
+import { ReactComponent as IconCopyright } from 'remixicon/icons/Business/copyright-line.svg';
+import { ReactComponent as IconHearts } from 'remixicon/icons/Health/hearts-fill.svg';
+import { ReactComponent as IconGithub } from 'remixicon/icons/Logos/github-fill.svg';
 import styles from './index.module.sass';
 
 function AppFooter() {

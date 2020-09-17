@@ -40,7 +40,7 @@ pipeline {
                     remote.host = HOST
                     remote.user = SSH_CRED_USR
                     remote.identityFile = SSH_CRED
-                    sshCommand remote: remote, command: "cd /home/${SSH_CRED_USR}/puuuudding.com && git fetch && git reset origin/master --hard && docker-compose pull && docker-compose up -d --build --no-deps"
+                    sshCommand remote: remote, command: "cd /home/${SSH_CRED_USR}/puuuudding.com && git pull && docker-compose pull && docker-compose up -d --build --no-deps"
                 }
             }
         }

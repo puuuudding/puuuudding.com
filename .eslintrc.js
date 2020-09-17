@@ -9,12 +9,13 @@ const a11yOff = Object
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
-  extends: ['airbnb', 'airbnb/hooks'],
-  plugins: ['babel'],
+  extends: ['airbnb-typescript', 'airbnb/hooks'],
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   env: {
     browser: true,
-    es6: true,
+    es2020: true,
   },
   ignorePatterns: ['/scripts/*', '/config/*', '.eslintrc.js'],
   globals: {
@@ -23,21 +24,12 @@ module.exports = {
     'react/prop-types': OFF,
     'react/sort-comp': WARN,
     'react/jsx-props-no-spreading': WARN,
-    'react/state-in-constructor': OFF,
-    'react/jsx-filename-extension': [ERROR, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': [ERROR, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     ...a11yOff,
 
     'no-plusplus': [ERROR, { allowForLoopAfterthoughts: true }],
-    'react/no-did-update-set-state': WARN, // setState in DidUpdate should be used in condition
     'react/no-array-index-key': WARN,
     'react/jsx-one-expression-per-line': OFF,
-    'max-classes-per-file': WARN,
     'arrow-parens': [ERROR, 'as-needed', { 'requireForBlockBody': true }],
-    'no-unused-expressions': OFF,
-    'babel/no-unused-expressions': [ERROR, {
-      allowShortCircuit: false,
-      allowTernary: false,
-      allowTaggedTemplates: false,
-    }],
   },
 };
