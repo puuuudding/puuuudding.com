@@ -2,11 +2,12 @@ import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.sass';
 
-import AppHeader from './components/Header';
-import AppFooter from './components/Footer';
+import AppHeader from 'components/Header';
+import AppFooter from 'components/Footer';
 
-const PageHome = lazy(() => import('./pages/Home'));
-const PageTest = lazy(() => import('./pages/Test'));
+const PageHome = lazy(() => import('pages/Home'));
+const PageAdmin = lazy(() => import('pages/Admin'));
+const PageTest = lazy(() => import('pages/Test'));
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Suspense fallback={<div>loading</div>}>
           <Switch>
             <Route path="/" exact><PageHome /></Route>
+            <Route path="/admin"><PageAdmin /></Route>
             <Route path="/hidden-test"><PageTest /></Route>
           </Switch>
         </Suspense>
