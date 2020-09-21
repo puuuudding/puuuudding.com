@@ -4,8 +4,14 @@ export const ImgUrls: { readonly [key: string]: string; } = {
 
 export const RequestURL: {
   readonly login: string;
+  readonly self: string;
+  readonly posts: string;
+  readonly allPosts: string;
 } = {
   login: '/api/auth/login',
+  self: '/api/users/me',
+  posts: '/api/posts',
+  allPosts: '/api/posts/all',
 };
 
 export const RouteURL: {

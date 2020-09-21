@@ -1,4 +1,5 @@
 import qs from 'qs';
+import { RouteURL } from './resources';
 
 enum METHOD { GET = 'GET', POST = 'POST', DELETE = 'DELETE' }
 
@@ -28,6 +29,9 @@ const request = async (method: METHOD, url: string, params: any = {}): Promise<a
   const respJson = await resp.json();
   if (resp.status >= 200 && resp.status < 300) {
     return respJson;
+  }
+  if (resp.status === 401) {
+    globalThis.history.replaceState(undefined, '', RouteURL.adminLogin);
   }
   const newError: any = new Error('Request failed');
   Object.assign(newError, { json: respJson });
