@@ -1,20 +1,18 @@
 import React, { lazy } from 'react';
-import {
-  useRouteMatch,
-  Route, Redirect, Switch,
-} from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import { RouteURL } from 'utils/resources';
 
 const PageLogin = lazy(() => import('./Login'));
 const PagePostsList = lazy(() => import('./PostsList'));
+const PagePostEdit = lazy(() => import('./PostEdit'));
 
 function PageAdmin() {
-  const { path } = useRouteMatch();
-
   return (
     <Switch>
-      <Route path={`${path}/login`}><PageLogin /></Route>
-      <Route path={`${path}/posts`}><PagePostsList /></Route>
-      <Redirect to={`${path}/login`} />
+      <Route path={RouteURL.adminLogin}><PageLogin /></Route>
+      <Route path={RouteURL.adminPosts} exact><PagePostsList /></Route>
+      <Route path={`${RouteURL.adminPosts}/:id`}><PagePostEdit /></Route>
+      <Redirect to={RouteURL.adminLogin} />
     </Switch>
   );
 }

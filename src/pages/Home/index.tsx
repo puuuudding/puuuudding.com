@@ -4,7 +4,7 @@ import styles from './index.module.sass';
 
 function PageHome() {
   return (
-    <div className={styles.pageHome}>
+    <div>
       <img className={styles.homeCoverImg} src={ImgUrls.puuuudding} />
     </div>
   );

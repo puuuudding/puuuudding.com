@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { RouteURL } from 'utils/resources';
 import './App.sass';
 
 import AppHeader from 'components/Header';
@@ -16,9 +17,9 @@ function App() {
         <AppHeader />
         <Suspense fallback={<div>loading</div>}>
           <Switch>
-            <Route path="/" exact><PageHome /></Route>
-            <Route path="/admin"><PageAdmin /></Route>
-            <Route path="/hidden-test"><PageTest /></Route>
+            <Route path={RouteURL.root} exact><PageHome /></Route>
+            <Route path={RouteURL.admin}><PageAdmin /></Route>
+            <Route path={RouteURL.test}><PageTest /></Route>
           </Switch>
         </Suspense>
       </div>
