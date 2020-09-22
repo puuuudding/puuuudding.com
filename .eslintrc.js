@@ -11,7 +11,13 @@ const a11yOff = Object
 
 module.exports = {
   root: true,
-  extends: ['airbnb-typescript', 'airbnb/hooks'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'airbnb-typescript',
+    'airbnb/hooks',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
   },

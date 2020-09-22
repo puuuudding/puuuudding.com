@@ -1,4 +1,4 @@
-export const ImgUrls: { readonly [key: string]: string; } = {
+export const ImgUrls: { readonly [key: string]: string | undefined; } = {
   puuuudding: 'https://assets.puuuudding.xyz/ybb4plyvhldv5iyj9yxhhp.jpg',
 };
 
