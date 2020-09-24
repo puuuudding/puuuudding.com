@@ -1,3 +1,5 @@
+const { rules: baseStyleRules } = require('eslint-config-airbnb-base/rules/style');
+
 const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
@@ -9,7 +11,13 @@ const a11yOff = Object
 
 module.exports = {
   root: true,
-  extends: ['airbnb-typescript', 'airbnb/hooks'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'airbnb-typescript',
+    'airbnb/hooks',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
   },
@@ -31,5 +39,10 @@ module.exports = {
     'react/no-array-index-key': WARN,
     'react/jsx-one-expression-per-line': OFF,
     'arrow-parens': [ERROR, 'as-needed', { 'requireForBlockBody': true }],
+    'no-underscore-dangle': [ERROR, {
+      ...baseStyleRules['no-underscore-dangle'][1],
+      allow: ['_id'],
+    }],
+    '@typescript-eslint/no-floating-promises': OFF,
   },
 };

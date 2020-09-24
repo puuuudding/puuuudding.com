@@ -4,7 +4,7 @@ import { ReactComponent as IconHearts } from 'remixicon/icons/Health/hearts-fill
 import { ReactComponent as IconGithub } from 'remixicon/icons/Logos/github-fill.svg';
 import styles from './index.module.sass';
 
-function AppFooter() {
+function AppFooter(): React.ReactElement {
   return (
     <footer className={styles.appFooter}>
       <span className={styles.rightsText}>

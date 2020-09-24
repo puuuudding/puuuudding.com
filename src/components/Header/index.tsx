@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.sass';
 
-function AppHeader() {
+function AppHeader(): React.ReactElement {
   return (
     <header className={styles.appHeader}>
       <h1 className={styles.title}>Puuuudding</h1>
