@@ -22,6 +22,7 @@ if ('serviceWorker' in navigator) {
       registration.unregister();
     })
     .catch((error) => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       console.error(error.message);
     });
 }

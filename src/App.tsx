@@ -10,7 +10,7 @@ const PageHome = lazy(() => import('pages/Home'));
 const PageAdmin = lazy(() => import('pages/Admin'));
 const PageTest = lazy(() => import('pages/Test'));
 
-function App() {
+function App(): React.ReactElement {
   return (
     <div className="root">
       <div className="page">

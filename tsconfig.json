@@ -18,7 +18,8 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "preserveConstEnums": true
   },
   "include": ["src/**/*"]
 }

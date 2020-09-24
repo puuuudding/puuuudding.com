@@ -7,19 +7,19 @@ import request from 'utils/request';
 import { RequestURL, RouteURL } from 'utils/resources';
 import styles from './index.module.sass';
 
-function PageLogin() {
+function PageLogin(): React.ReactElement {
   const history = useHistory();
   const refPassword: RefObject<HTMLInputElement> | null = useRef(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMsg, setErroeMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = async () => {
     try {
       await request.post(RequestURL.login, { username, password });
       history.push(RouteURL.adminPosts);
     } catch {
-      setErroeMsg('Login failed');
+      setErrorMsg('Login failed');
     }
   };
 

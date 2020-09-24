@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.sass';
 
-function PageTest() {
+function PageTest(): React.ReactElement {
   return (
     <div className={styles.pageTest}>
       <pre>

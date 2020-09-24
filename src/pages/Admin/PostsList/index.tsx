@@ -3,15 +3,15 @@ import request from 'utils/request';
 import { RequestURL } from 'utils/resources';
 import { Post } from 'types/post';
 
-function PagePostsList() {
+function PagePostsList(): React.ReactElement {
   const [loading, setLoading] = useState(true);
-  const [postList, setPostList] = useState<Array<Post>>([]);
+  const [postList, setPostList] = useState<Post[]>([]);
 
   useEffect(() => {
     const loadPosts = async () => {
       setLoading(true);
       try {
-        const posts = await request.get(RequestURL.allPosts);
+        const posts = await request.get<Post[]>(RequestURL.allPosts);
         setPostList(posts);
       } finally {
         setLoading(false);

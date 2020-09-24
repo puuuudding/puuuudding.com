@@ -1,9 +1,13 @@
 import qs from 'qs';
 import { RouteURL } from './resources';
 
-enum METHOD { GET = 'GET', POST = 'POST', DELETE = 'DELETE' }
+enum Method { Get = 'GET', Post = 'POST', Delete = 'DELETE' }
 
-const request = async (method: METHOD, url: string, params: any = {}): Promise<any> => {
+const request = async <T>(
+  method: Method,
+  url: string,
+  params: Record<string, unknown> = {},
+): Promise<T> => {
   const fetchConfig: RequestInit = {
     method,
     credentials: 'same-origin',
@@ -15,31 +19,37 @@ const request = async (method: METHOD, url: string, params: any = {}): Promise<a
   let targetUrl = url;
 
   switch (method) {
-    case METHOD.GET:
-    case METHOD.DELETE:
+    case Method.Get:
+    case Method.Delete:
       targetUrl += qs.stringify(params, { addQueryPrefix: true, arrayFormat: 'comma' });
       break;
-    case METHOD.POST:
+    case Method.Post:
       fetchConfig.body = JSON.stringify(params);
       break;
     default:
   }
 
   const resp = await fetch(targetUrl, fetchConfig);
-  const respJson = await resp.json();
+  const respJson = await resp.json() as T;
   if (resp.status >= 200 && resp.status < 300) {
     return respJson;
   }
   if (resp.status === 401) {
     globalThis.history.replaceState(undefined, '', RouteURL.adminLogin);
   }
-  const newError: any = new Error('Request failed');
+  const newError = new Error('Request failed');
   Object.assign(newError, { json: respJson });
   throw newError;
 };
 
-const methodGet = (url: string, params?: any) => request(METHOD.GET, url, params);
-const methodPost = (url: string, params?: any) => request(METHOD.POST, url, params);
-const methodDelete = (url: string, params?: any) => request(METHOD.DELETE, url, params);
+const methodGet = <T>(
+  url: string, params?: Record<string, unknown>,
+): Promise<T> => request(Method.Get, url, params);
+const methodPost = <T>(
+  url: string, params?: Record<string, unknown>,
+): Promise<T> => request(Method.Post, url, params);
+const methodDelete = <T>(
+  url: string, params?: Record<string, unknown>,
+): Promise<T> => request(Method.Delete, url, params);
 
 export default { get: methodGet, post: methodPost, delete: methodDelete };

@@ -43,5 +43,6 @@ module.exports = {
       ...baseStyleRules['no-underscore-dangle'][1],
       allow: ['_id'],
     }],
+    '@typescript-eslint/no-floating-promises': OFF,
   },
 };

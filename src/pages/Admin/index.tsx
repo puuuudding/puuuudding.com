@@ -10,7 +10,7 @@ const PageLogin = lazy(() => import('./Login'));
 const PagePostsList = lazy(() => import('./PostsList'));
 const PagePostEdit = lazy(() => import('./PostEdit'));
 
-function PageAdmin() {
+function PageAdmin(): React.ReactElement | null {
   const history = useHistory();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [checking, setChecking] = useState(true);
