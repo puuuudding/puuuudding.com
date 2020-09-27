@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   web:
-    image: puuuudding/puuuudding.com:latest
+    image: ${DOCKER_REGISTRY_URL}/puuuudding/puuuudding.com:latest
     container_name: puuuudding_web
     restart: always
     ports:
