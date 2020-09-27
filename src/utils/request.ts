@@ -4,9 +4,7 @@ import { RouteURL } from './resources';
 enum Method { Get = 'GET', Post = 'POST', Delete = 'DELETE' }
 
 const request = async <T>(
-  method: Method,
-  url: string,
-  params: Record<string, unknown> = {},
+  method: Method, url: string, params: Record<string, unknown> = {},
 ): Promise<T> => {
   const fetchConfig: RequestInit = {
     method,
@@ -42,14 +40,9 @@ const request = async <T>(
   throw newError;
 };
 
-const methodGet = <T>(
-  url: string, params?: Record<string, unknown>,
-): Promise<T> => request(Method.Get, url, params);
-const methodPost = <T>(
-  url: string, params?: Record<string, unknown>,
-): Promise<T> => request(Method.Post, url, params);
-const methodDelete = <T>(
-  url: string, params?: Record<string, unknown>,
-): Promise<T> => request(Method.Delete, url, params);
+type Request = <T>(url: string, params?: Record<string, unknown>) => Promise<T>;
+const methodGet: Request = (url, params) => request(Method.Get, url, params);
+const methodPost: Request = (url, params) => request(Method.Post, url, params);
+const methodDelete: Request = (url, params) => request(Method.Delete, url, params);
 
 export default { get: methodGet, post: methodPost, delete: methodDelete };

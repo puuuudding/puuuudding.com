@@ -1,7 +1,4 @@
-import React, {
-  useState, useRef,
-  ChangeEvent, KeyboardEvent, RefObject,
-} from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import request from 'utils/request';
 import { RequestURL, RouteURL } from 'utils/resources';
@@ -9,7 +6,7 @@ import styles from './index.module.sass';
 
 function PageLogin(): React.ReactElement {
   const history = useHistory();
-  const refPassword: RefObject<HTMLInputElement> | null = useRef(null);
+  const refPassword = useRef<HTMLInputElement>(null);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -23,14 +20,18 @@ function PageLogin(): React.ReactElement {
     }
   };
 
-  const handleChangeUsername = (e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);
-  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-  const handleUsernameKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleChangeUsername: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setUsername(e.currentTarget.value);
+  };
+  const handleChangePassword: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPassword(e.currentTarget.value);
+  };
+  const handleUsernameKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
       refPassword.current?.focus();
     }
   };
-  const handlePasswordKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handlePasswordKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
       handleSubmit();
     }
